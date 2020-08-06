@@ -101,15 +101,15 @@ dfk$MiscFeature[is.na(dfk$MiscFeature)] <- 'None'
 
 dfk$MiscFeature <- as.factor(dfk$MiscFeature)
 
-#dfkey
-table(dfk$dfkey)
-summary(dfk$dfkey)
+##Alley
+table(dfk$alley)
+summary(dfk$alley)
 
-dfk$dfkey <- as.character(dfk$dfkey)
-dfk$dfkey[is.na(dfk$dfkey)] <- 'None'
-dfk$dfkey <- as.factor(dfk$dfkey)
+dfk$alley <- as.character(dfk$alley)
+dfk$alley[is.na(dfk$alley)] <- 'None'
+dfk$alley <- as.factor(dfk$alley)
 
-ggplot(dfk[!is.na(dfk$SalePrice),], aes(x=dfkey, y=SalePrice)) +
+ggplot(dfk[!is.na(dfk$SalePrice),], aes(x=alley, y=SalePrice)) +
   geom_bar(fill='blue',  stat="summary")
 
 #Fence
