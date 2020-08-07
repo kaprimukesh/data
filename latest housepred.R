@@ -513,7 +513,7 @@ library(caret)
 library(gridExtra)
 library(ggrepel)
 
-
+set.seed(123)
 my_control <-trainControl(method="cv", number=5)
 lassoGrid <- expand.grid(alpha = 1, lambda = seq(0.001,0.1,by = 0.0005))
 
