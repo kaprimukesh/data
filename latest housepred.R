@@ -91,7 +91,7 @@ dk$Fence <- as.factor(dk$Fence)
 
 #fireplace
 table(dk$Fireplaces)
-Qualities
+Qualities <- c('None' = 0, 'Po' = 1, 'Fa' = 2, 'TA' = 3, 'Gd' = 4, 'Ex' = 5)
 dk$FireplaceQu <- as.character(dk$FireplaceQu)
 dk$FireplaceQu[is.na(dk$FireplaceQu)] <- 'None'
 dk$FireplaceQu <- as.integer(revalue(dk$FireplaceQu, Qualities))
@@ -191,7 +191,7 @@ dk$GarageFinish<-as.integer(revalue(dk$GarageFinish, Finish))
 table(dk$GarageFinish)
 
 ##GarageQual: Garage quality
-Qualities <- c('None' = 0, 'Po' = 1, 'Fa' = 2, 'TA' = 3, 'Gd' = 4, 'Ex' = 5)
+
 
 dk$GarageQual <- as.character(dk$GarageQual)
 dk$GarageQual[is.na(dk$GarageQual)] <- 'None'
@@ -482,9 +482,9 @@ dknum <- select(dk, -c("MSZoning", "LandContour", "LotConfig","Neighborhood","Co
                    "GarageType","Fence","SaleType","SaleCondition")) 
 
 head(dknum,5)
+dknum$SalePrice <- NULL
 head(dkfactor,5)
 
-####Skewness 
 
 ###one hot encoding
 dkdummies <- as.data.frame(model.matrix(~.-1, dkfactor))
@@ -492,7 +492,7 @@ dim(dkdummies)
 
 combined <- cbind(dknum, dkdummies)
 dim(combined)
-###salesprice
+###salesprice Skewness
 skew(dk$SalePrice)
 dk$SalePrice <- log(dk$SalePrice) 
 
